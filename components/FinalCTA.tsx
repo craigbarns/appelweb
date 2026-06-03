@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Phone, ArrowRight, Check, Clock, ShieldCheck, CalendarCheck } from "lucide-react";
+import { Phone, ArrowRight, Clock, ShieldCheck, CalendarCheck } from "lucide-react";
 import { CONTACT } from "@/lib/data";
 
 const METIERS = ["Plombier", "Électricien", "Couvreur", "Serrurier", "Climaticien", "Maçon", "Autre artisan"];
 
-type Status = "idle" | "submitting" | "success" | "error";
+type Status = "idle" | "submitting" | "error";
 
 function WhatsAppIcon({ className }: { className?: string }) {
   return (
@@ -24,6 +25,7 @@ const trust = [
 ];
 
 export default function FinalCTA() {
+  const router = useRouter();
   const [status, setStatus] = useState<Status>("idle");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -40,8 +42,7 @@ export default function FinalCTA() {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: body.toString(),
       });
-      setStatus("success");
-      formEl.reset();
+      router.push("/merci");
     } catch {
       setStatus("error");
     }
@@ -106,100 +107,83 @@ export default function FinalCTA() {
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="relative rounded-3xl border border-white/10 bg-ink-900/80 p-6 shadow-float backdrop-blur-xl sm:p-8"
           >
-            {status === "success" ? (
-              <div className="flex min-h-[420px] flex-col items-center justify-center text-center">
-                <span className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-500/15 text-emerald-400">
-                  <Check className="h-8 w-8" />
-                </span>
-                <h3 className="mt-5 text-2xl font-semibold text-white">Demande envoyée !</h3>
-                <p className="mt-2 max-w-xs text-slate-400">
-                  Merci. Notre équipe vous rappelle sous 24h pour discuter de votre projet.
-                </p>
-                <button
-                  onClick={() => setStatus("idle")}
-                  className="mt-6 text-sm font-semibold text-electric-400 hover:text-electric-300"
-                >
-                  Envoyer une autre demande
-                </button>
+            <form
+              name="devis"
+              method="POST"
+              action="/merci/"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              onSubmit={handleSubmit}
+              className="flex flex-col gap-4"
+            >
+              <input type="hidden" name="form-name" value="devis" />
+              <p className="hidden">
+                <label>
+                  Ne pas remplir : <input name="bot-field" />
+                </label>
+              </p>
+
+              <div>
+                <h3 className="text-xl font-semibold text-white">Recevez votre devis gratuit</h3>
+                <p className="mt-1 text-sm text-slate-400">Réponse garantie sous 24h, sans engagement.</p>
               </div>
-            ) : (
-              <form
-                name="devis"
-                method="POST"
-                data-netlify="true"
-                netlify-honeypot="bot-field"
-                onSubmit={handleSubmit}
-                className="flex flex-col gap-4"
-              >
-                <input type="hidden" name="form-name" value="devis" />
-                <p className="hidden">
-                  <label>
-                    Ne pas remplir : <input name="bot-field" />
-                  </label>
-                </p>
 
-                <div>
-                  <h3 className="text-xl font-semibold text-white">Recevez votre devis gratuit</h3>
-                  <p className="mt-1 text-sm text-slate-400">Réponse garantie sous 24h, sans engagement.</p>
-                </div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <Field label="Nom complet" name="nom" placeholder="Jean Martin" required />
+                <Field label="Téléphone" name="telephone" type="tel" placeholder="06 12 34 56 78" required />
+              </div>
 
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <Field label="Nom complet" name="nom" placeholder="Jean Martin" required />
-                  <Field label="Téléphone" name="telephone" type="tel" placeholder="06 12 34 56 78" required />
-                </div>
-
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="flex flex-col gap-1.5">
-                    <label htmlFor="metier" className="text-sm font-medium text-slate-300">
-                      Votre métier
-                    </label>
-                    <select
-                      id="metier"
-                      name="metier"
-                      defaultValue=""
-                      className="rounded-xl border border-white/10 bg-ink-850 px-4 py-3 text-sm text-white outline-none transition-colors focus:border-electric-500 focus:ring-2 focus:ring-electric-500/30"
-                    >
-                      <option value="" disabled>
-                        Sélectionnez…
-                      </option>
-                      {METIERS.map((m) => (
-                        <option key={m} value={m}>
-                          {m}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <Field label="Ville" name="ville" placeholder="Lyon" />
-                </div>
-
+              <div className="grid gap-4 sm:grid-cols-2">
                 <div className="flex flex-col gap-1.5">
-                  <label htmlFor="message" className="text-sm font-medium text-slate-300">
-                    Votre projet <span className="text-slate-500">(optionnel)</span>
+                  <label htmlFor="metier" className="text-sm font-medium text-slate-300">
+                    Votre métier
                   </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={3}
-                    placeholder="Décrivez votre besoin en quelques mots…"
-                    className="resize-none rounded-xl border border-white/10 bg-ink-850 px-4 py-3 text-sm text-white placeholder:text-slate-500 outline-none transition-colors focus:border-electric-500 focus:ring-2 focus:ring-electric-500/30"
-                  />
+                  <select
+                    id="metier"
+                    name="metier"
+                    defaultValue=""
+                    className="rounded-xl border border-white/10 bg-ink-850 px-4 py-3 text-sm text-white outline-none transition-colors focus:border-electric-500 focus:ring-2 focus:ring-electric-500/30"
+                  >
+                    <option value="" disabled>
+                      Sélectionnez…
+                    </option>
+                    {METIERS.map((m) => (
+                      <option key={m} value={m}>
+                        {m}
+                      </option>
+                    ))}
+                  </select>
                 </div>
+                <Field label="Ville" name="ville" placeholder="Lyon" />
+              </div>
 
-                <button type="submit" disabled={status === "submitting"} className="btn-primary mt-1 w-full">
-                  {status === "submitting" ? "Envoi en cours…" : "Recevoir mon devis gratuit"}
-                  {status !== "submitting" && <ArrowRight className="h-4 w-4" />}
-                </button>
+              <div className="flex flex-col gap-1.5">
+                <label htmlFor="message" className="text-sm font-medium text-slate-300">
+                  Votre projet <span className="text-slate-500">(optionnel)</span>
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={3}
+                  placeholder="Décrivez votre besoin en quelques mots…"
+                  className="resize-none rounded-xl border border-white/10 bg-ink-850 px-4 py-3 text-sm text-white placeholder:text-slate-500 outline-none transition-colors focus:border-electric-500 focus:ring-2 focus:ring-electric-500/30"
+                />
+              </div>
 
-                {status === "error" && (
-                  <p className="text-center text-sm text-red-400">
-                    Une erreur est survenue. Appelez-nous au {CONTACT.phoneDisplay}.
-                  </p>
-                )}
-                <p className="text-center text-xs text-slate-500">
-                  En envoyant, vous acceptez d&apos;être recontacté. Aucune donnée revendue.
+              <button type="submit" disabled={status === "submitting"} className="btn-primary mt-1 w-full">
+                {status === "submitting" ? "Envoi en cours…" : "Recevoir mon devis gratuit"}
+                {status !== "submitting" && <ArrowRight className="h-4 w-4" />}
+              </button>
+
+              {status === "error" && (
+                <p className="text-center text-sm text-red-400">
+                  Une erreur est survenue. Appelez-nous au {CONTACT.phoneDisplay}.
                 </p>
-              </form>
-            )}
+              )}
+              <p className="text-center text-xs text-slate-500">
+                En envoyant, vous acceptez d&apos;être recontacté. Aucune donnée revendue.
+              </p>
+            </form>
           </motion.div>
         </div>
       </div>
