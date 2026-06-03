@@ -1,65 +1,104 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { GripVertical, MoveHorizontal, Sparkles, Check } from "lucide-react";
+import { GripVertical, MoveHorizontal, Sparkles, Check, Phone, Star } from "lucide-react";
 import SectionHeading from "./ui/SectionHeading";
 import Reveal from "./ui/Reveal";
 
+const PHOTO = "/img/toiture.webp";
+const BRAND = "Couverture Durand";
+
+/* The site AppelWeb would build — real photo, modern, conversion-focused */
 function AfterSite() {
   return (
-    <div className="absolute inset-0 bg-white">
-      <div className="flex h-full flex-col">
-        <div className="flex items-center justify-between border-b border-slate-100 px-4 py-2.5">
-          <span className="font-display text-[0.72rem] font-semibold text-ink-900 sm:text-sm">Couverture Martin</span>
-          <span className="rounded-full bg-emerald-500 px-2.5 py-1 text-[0.6rem] font-semibold text-white sm:text-xs">Appeler</span>
+    <div className="absolute inset-0 bg-ink-950">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={PHOTO} alt="Site internet moderne d'un couvreur réalisé par AppelWeb" className="absolute inset-0 h-full w-full object-cover" />
+      <div className="absolute inset-0 bg-gradient-to-tr from-ink-950/92 via-ink-950/55 to-ink-950/15" />
+
+      <div className="absolute inset-x-0 top-0 flex items-center justify-between px-4 py-3 sm:px-6">
+        <span className="font-display text-sm font-semibold text-white sm:text-lg">{BRAND}</span>
+        <div className="hidden items-center gap-4 text-xs font-medium text-white/85 lg:flex">
+          <span>Accueil</span>
+          <span>Services</span>
+          <span>Réalisations</span>
+          <span>Avis</span>
         </div>
-        <div className="relative flex-1 overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(120%_120%_at_85%_-10%,rgba(47,107,255,0.18),transparent_55%)]" />
-          <div className="relative flex h-full flex-col justify-center px-4 sm:px-6">
-            <span className="w-fit rounded-full bg-electric-50 px-2 py-0.5 text-[0.55rem] font-semibold uppercase tracking-wider text-electric-600 sm:text-[0.65rem]">
-              Couvreur à Marseille
-            </span>
-            <p className="mt-2 font-display text-base font-semibold leading-tight text-ink-900 sm:text-xl">
-              Toiture neuve ou réparée, sans mauvaise surprise
-            </p>
-            <div className="mt-3 flex gap-2">
-              <span className="rounded-md bg-electric-500 px-2.5 py-1 text-[0.6rem] font-semibold text-white sm:text-xs">Devis gratuit</span>
-              <span className="rounded-md border border-slate-200 px-2.5 py-1 text-[0.6rem] font-semibold text-ink-900 sm:text-xs">04 91 12 34 56</span>
-            </div>
+        <span className="rounded-full bg-electric-500 px-3.5 py-1.5 text-[0.7rem] font-semibold text-white sm:text-xs">
+          Devis gratuit
+        </span>
+      </div>
+
+      <div className="absolute inset-0 flex flex-col justify-center px-4 sm:px-6">
+        <span className="w-fit rounded-full border border-white/20 bg-white/10 px-2.5 py-1 text-[0.6rem] font-semibold uppercase tracking-wider text-white backdrop-blur sm:text-xs">
+          Couvreur à Nice · 15 ans d&apos;expérience
+        </span>
+        <h3 className="mt-3 max-w-[82%] font-display text-xl font-semibold leading-tight text-white sm:text-3xl lg:text-4xl">
+          Toiture neuve, rénovation &amp; étanchéité
+        </h3>
+        <p className="mt-2 max-w-[70%] text-xs text-white/75 sm:text-sm">Devis gratuit sous 24h. Travail garanti 10 ans.</p>
+        <div className="mt-4 flex flex-wrap items-center gap-2">
+          <span className="rounded-lg bg-electric-500 px-3.5 py-2 text-[0.7rem] font-semibold text-white shadow-glow-sm sm:text-xs">
+            Demander un devis
+          </span>
+          <span className="inline-flex items-center gap-1.5 rounded-lg border border-white/30 bg-white/5 px-3.5 py-2 text-[0.7rem] font-semibold text-white backdrop-blur sm:text-xs">
+            <Phone className="h-3 w-3" />
+            04 93 12 34 56
+          </span>
+        </div>
+        <div className="mt-3 flex items-center gap-1.5">
+          <span className="inline-flex">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <Star key={i} className="h-3 w-3 fill-amber-400 text-amber-400" />
+            ))}
+          </span>
+          <span className="text-[0.65rem] text-white/80 sm:text-xs">4,9 sur Google · 126 avis</span>
+        </div>
+      </div>
+
+      <div className="absolute inset-x-0 bottom-0 hidden grid-cols-3 gap-px bg-white/10 sm:grid">
+        {["Toiture", "Zinguerie", "Étanchéité"].map((s) => (
+          <div key={s} className="bg-ink-950/70 px-3 py-2.5 text-center text-[0.7rem] font-medium text-white backdrop-blur">
+            {s}
           </div>
-        </div>
-        <div className="grid grid-cols-3 gap-2 px-4 pb-4">
-          {["Toiture", "Zinguerie", "Isolation"].map((s) => (
-            <div key={s} className="rounded-lg border border-slate-100 bg-slate-50 px-2 py-2">
-              <div className="h-4 w-4 rounded bg-electric-gradient" />
-              <p className="mt-1 text-[0.55rem] font-medium text-slate-700 sm:text-[0.65rem]">{s}</p>
-            </div>
-          ))}
-        </div>
+        ))}
       </div>
     </div>
   );
 }
 
+/* The old site — same business, dated 2008 look (the real photo, mistreated) */
 function BeforeSite() {
   return (
-    <div className="absolute inset-0" style={{ background: "#0c7b78", fontFamily: '"Times New Roman", Times, serif' }}>
-      <div className="flex h-full flex-col text-center">
-        <div className="bg-yellow-300 py-1.5" style={{ borderBottom: "3px ridge #b00000" }}>
-          <p className="text-sm font-bold uppercase text-red-700 sm:text-lg" style={{ textShadow: "1px 1px #fff" }}>
-            ★ Couverture Martin ★
-          </p>
+    <div className="absolute inset-0 flex flex-col overflow-hidden" style={{ background: "#0c6b6b", fontFamily: '"Times New Roman", Times, serif' }}>
+      <div className="py-1.5 text-center" style={{ background: "linear-gradient(#ffe14d,#f5c518)", borderBottom: "3px ridge #b00000" }}>
+        <p className="text-sm font-bold uppercase tracking-wide text-red-700 sm:text-xl" style={{ textShadow: "1px 1px #fff" }}>
+          ★ Couverture Durand ★
+        </p>
+      </div>
+
+      <div className="bg-blue-950/40 py-1 text-center text-[0.55rem] text-yellow-200 sm:text-xs">
+        <span className="underline">Accueil</span> | <span className="underline">Nos services</span> |{" "}
+        <span className="underline">Livre d&apos;or</span> | <span className="underline">Contact</span>
+      </div>
+
+      <div className="flex flex-1 flex-col items-center px-3 py-3 text-center text-white">
+        <p className="text-[0.7rem] font-bold underline decoration-yellow-300 sm:text-base">
+          Bienvenue sur notre site internet !!!
+        </p>
+        <div className="mt-2.5 inline-block bg-white p-1" style={{ border: "3px ridge #cccccc" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={PHOTO} alt="toiture" className="h-14 w-24 object-cover sm:h-20 sm:w-32" style={{ filter: "sepia(0.5) saturate(0.8) contrast(0.9)" }} />
+          <p className="text-[0.5rem] text-gray-600 sm:text-[0.6rem]">photo_toiture.jpg</p>
         </div>
-        <div className="flex flex-1 flex-col items-center px-3 py-3 text-white">
-          <p className="text-[0.7rem] underline decoration-yellow-200 sm:text-sm">Bienvenue sur notre site internet !!!</p>
-          <div className="mt-3 flex h-16 w-24 items-center justify-center border-2 border-dashed border-white/70 bg-gray-300 text-[0.55rem] text-gray-700 sm:h-20 sm:w-32 sm:text-[0.65rem]">
-            photo_toiture.jpg
-          </div>
-          <p className="mt-3 text-[0.6rem] sm:text-xs">Pour un devis, appelez le 04.91.XX.XX.XX</p>
-          <p className="mt-2 text-[0.6rem] font-bold text-yellow-200 sm:text-xs">⚠ Optimisé pour Internet Explorer 6 ⚠</p>
-          <p className="mt-2 text-[0.55rem] text-white/80 sm:text-[0.65rem]">Nombre de visiteurs : 0004213</p>
-        </div>
-        <div className="bg-blue-900 py-1 text-[0.55rem] text-yellow-300 sm:text-xs">~ © 2009 ~ Site en construction ~</div>
+        <p className="mt-2 text-[0.6rem] sm:text-xs">Pour un devis gratuit, appelez le 04.93.XX.XX.XX</p>
+        <p className="mt-1.5 animate-pulse text-[0.6rem] font-bold text-yellow-300 sm:text-sm">★ NOUVEAU ★</p>
+        <p className="mt-1 text-[0.55rem] sm:text-[0.65rem]">⚠ Site optimisé pour Internet Explorer 6 ⚠</p>
+        <p className="mt-1.5 text-[0.5rem] text-white/80 sm:text-[0.6rem]">Vous êtes le visiteur n° 0004213</p>
+      </div>
+
+      <div className="bg-blue-950 py-1 text-center text-[0.5rem] text-yellow-300 sm:text-xs">
+        ~ © 2008 ~ Site en construction 🚧 ~ Devis gratuit ~
       </div>
     </div>
   );
@@ -92,7 +131,7 @@ export default function BeforeAfter() {
               Le jour et la nuit pour <span className="text-gradient-electric">votre image</span>
             </>
           }
-          description="Glissez le curseur pour voir la transformation. À gauche, un site dépassé. À droite, un site AppelWeb qui inspire confiance et génère des appels."
+          description="Le même couvreur, deux sites. Glissez le curseur : à gauche, un site dépassé qui fait fuir. À droite, un site AppelWeb qui inspire confiance et génère des appels."
         />
 
         <Reveal className="mx-auto mt-14 max-w-4xl">
@@ -109,15 +148,12 @@ export default function BeforeAfter() {
             onPointerUp={() => (dragging.current = false)}
             onPointerCancel={() => (dragging.current = false)}
           >
-            {/* New site (base) */}
             <AfterSite />
 
-            {/* Old site (clipped to left) */}
             <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
               <BeforeSite />
             </div>
 
-            {/* Labels */}
             <span className="pointer-events-none absolute left-3 top-3 z-30 rounded-full bg-black/60 px-2.5 py-1 text-[0.6rem] font-semibold uppercase tracking-wider text-white/90 backdrop-blur sm:text-xs">
               Avant
             </span>
@@ -125,11 +161,7 @@ export default function BeforeAfter() {
               <Sparkles className="h-3 w-3" /> Après
             </span>
 
-            {/* Handle */}
-            <div
-              className="absolute inset-y-0 z-30 w-0.5 bg-white/90"
-              style={{ left: `${pos}%`, transform: "translateX(-50%)" }}
-            >
+            <div className="absolute inset-y-0 z-30 w-0.5 bg-white/90" style={{ left: `${pos}%`, transform: "translateX(-50%)" }}>
               <div
                 role="slider"
                 aria-label="Comparer avant et après"
