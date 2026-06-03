@@ -10,6 +10,10 @@ import {
   Cloud,
   ShieldCheck,
   Search,
+  Users,
+  Star,
+  TrendingUp,
+  Rocket,
   type LucideIcon,
 } from "lucide-react";
 
@@ -30,11 +34,17 @@ export const TARGETS = [
   "artisans du bâtiment",
 ];
 
-export const STATS = [
-  { value: "+200", label: "artisans accompagnés" },
-  { value: "4,9/5", label: "note de satisfaction" },
-  { value: "+38%", label: "d'appels en moyenne" },
-  { value: "5 jours", label: "pour être en ligne" },
+export type Stat = {
+  value: string;
+  label: string;
+  icon: LucideIcon;
+};
+
+export const STATS: Stat[] = [
+  { value: "+200", label: "artisans accompagnés", icon: Users },
+  { value: "4,9/5", label: "note de satisfaction", icon: Star },
+  { value: "+38%", label: "d'appels en moyenne", icon: TrendingUp },
+  { value: "5 jours", label: "pour être en ligne", icon: Rocket },
 ];
 
 export type Service = {
@@ -279,6 +289,50 @@ export const TESTIMONIALS: Testimonial[] = [
     rating: 5,
     quote:
       "Enfin un site dont je suis fier. Moderne, parfait sur mobile, et je n'ai rien à gérer techniquement. Un service vraiment au top.",
+  },
+];
+
+export type Realisation = {
+  brand: string;
+  trade: string;
+  city: string;
+  tagline: string;
+  phone: string;
+  result: string;
+  resultDetail: string;
+  description: string;
+};
+
+export const REALISATIONS: Realisation[] = [
+  {
+    brand: "Plomberie Martin",
+    trade: "Plombier",
+    city: "Lyon",
+    tagline: "Dépannage plomberie 24/7",
+    phone: "04 78 12 34 56",
+    result: "+42% d'appels",
+    resultDetail: "en 2 mois",
+    description: "Site vitrine + référencement local. Désormais en 1ʳᵉ page Google sur « plombier Lyon ».",
+  },
+  {
+    brand: "ClimPro",
+    trade: "Climatisation",
+    city: "Marseille",
+    tagline: "Installation & entretien clim",
+    phone: "04 91 23 45 67",
+    result: "×3 demandes",
+    resultDetail: "de devis cet été",
+    description: "Refonte complète + Google Business Profile. Un pic de demandes capté en haute saison.",
+  },
+  {
+    brand: "Serrurerie Express",
+    trade: "Serrurier",
+    city: "Lille",
+    tagline: "Dépannage serrurerie express",
+    phone: "03 20 34 56 78",
+    result: "Appels 24/7",
+    resultDetail: "via WhatsApp",
+    description: "Site express + bouton d'appel d'urgence. Les dépannages tombent jour et nuit.",
   },
 ];
 

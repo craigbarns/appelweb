@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
-import { ArrowRight, Phone, Star, PhoneCall, TrendingUp, Check, ShieldCheck } from "lucide-react";
+import { ArrowRight, Phone, Star, PhoneCall, ShieldCheck } from "lucide-react";
 import { CONTACT, TARGETS } from "@/lib/data";
 
 const container: Variants = {
@@ -55,29 +55,20 @@ export default function Hero() {
             <span className="font-semibold text-white">49€/mois</span>.
           </motion.p>
 
-          <motion.div variants={item} className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a href="#contact" className="btn-primary group w-full sm:w-auto">
+          <motion.div variants={item} className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <a href="#contact" className="btn-primary group w-full px-7 py-4 text-base sm:w-auto">
               Demander un devis
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </a>
-            <a href="#contact" className="btn-ghost w-full sm:w-auto">
+            <a href="#contact" className="btn-ghost w-full px-7 py-4 text-base sm:w-auto">
               <Phone className="h-4 w-4 text-electric-400" />
               Être rappelé
             </a>
           </motion.div>
 
-          <motion.div variants={item} className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2.5 text-sm text-slate-400">
-            <span className="inline-flex items-center gap-2">
-              <Stars />
-              <span className="font-medium text-slate-300">4,9/5 · +200 artisans</span>
-            </span>
-            <span className="hidden h-4 w-px bg-white/10 sm:block" />
-            <span className="inline-flex items-center gap-1.5">
-              <Check className="h-4 w-4 text-electric-400" /> Sans engagement
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <ShieldCheck className="h-4 w-4 text-electric-400" /> En ligne en 5 jours
-            </span>
+          <motion.div variants={item} className="mt-8 flex items-center justify-center gap-2.5 text-sm text-slate-400">
+            <Stars />
+            <span className="font-medium text-slate-300">4,9/5 — déjà +200 artisans accompagnés</span>
           </motion.div>
         </motion.div>
 
@@ -172,30 +163,8 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, scale: 0.85, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.15 }}
-            className="absolute -right-4 top-40 hidden sm:block lg:-right-12"
-          >
-            <div className="animate-float rounded-2xl border border-white/10 bg-ink-800/90 p-4 shadow-float backdrop-blur-xl" style={{ animationDelay: "1.5s" }}>
-              <div className="flex items-center justify-between gap-6">
-                <div>
-                  <p className="text-xs text-slate-400">Appels ce mois</p>
-                  <p className="font-display text-2xl font-semibold text-white">+38%</p>
-                </div>
-                <TrendingUp className="h-5 w-5 text-emerald-400" />
-              </div>
-              <div className="mt-3 flex items-end gap-1">
-                {[40, 55, 48, 70, 62, 88, 100].map((h, i) => (
-                  <span key={i} className="w-2 rounded-sm bg-electric-gradient" style={{ height: `${h * 0.32}px` }} />
-                ))}
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.85, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.3 }}
-            className="absolute -bottom-8 left-6 hidden sm:block lg:-left-6"
+            className="absolute -bottom-8 right-6 hidden sm:block lg:-right-6"
           >
             <div className="animate-float rounded-2xl border border-white/10 bg-ink-800/90 p-4 shadow-float backdrop-blur-xl" style={{ animationDelay: "0.8s" }}>
               <Stars />
@@ -206,7 +175,7 @@ export default function Hero() {
         </motion.div>
 
         {/* Targets marquee */}
-        <div className="relative mt-20 mask-fade-x">
+        <div className="relative mt-20 overflow-hidden mask-fade-x">
           <div className="flex w-max animate-marquee">
             {[0, 1].map((half) => (
               <div key={half} className="flex items-center" aria-hidden={half === 1}>

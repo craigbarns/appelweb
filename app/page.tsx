@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import ProofBar from "@/components/ProofBar";
 import Services from "@/components/Services";
 import BeforeAfter from "@/components/BeforeAfter";
+import Realisations from "@/components/Realisations";
 import WhyUs from "@/components/WhyUs";
 import Process from "@/components/Process";
 import Pricing from "@/components/Pricing";
@@ -20,6 +21,7 @@ export default function Home() {
         <ProofBar />
         <Services />
         <BeforeAfter />
+        <Realisations />
         <WhyUs />
         <Process />
         <Pricing />
