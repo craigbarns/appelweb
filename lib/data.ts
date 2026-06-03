@@ -33,7 +33,7 @@ export const TARGETS = [
 export const STATS = [
   { value: "+200", label: "artisans accompagnés" },
   { value: "4,9/5", label: "note de satisfaction" },
-  { value: "+35%", label: "d'appels en moyenne" },
+  { value: "+38%", label: "d'appels en moyenne" },
   { value: "5 jours", label: "pour être en ligne" },
 ];
 
