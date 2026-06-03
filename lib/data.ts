@@ -298,14 +298,13 @@ export type Realisation = {
   city: string;
   tagline: string;
   phone: string;
-  services: string[];
   accent: string;
-  tint: string;
-  rating: string;
-  variant: "classic" | "split" | "urgency";
+  image: string;
+  domain: string;
   result: string;
   resultDetail: string;
   description: string;
+  highlights: string[];
 };
 
 export const REALISATIONS: Realisation[] = [
@@ -313,31 +312,29 @@ export const REALISATIONS: Realisation[] = [
     brand: "Plomberie Martin",
     trade: "Plombier",
     city: "Lyon",
-    tagline: "Dépannage plomberie 24/7",
+    tagline: "Dépannage plomberie 24h/24",
     phone: "04 78 12 34 56",
-    services: ["Dépannage", "Fuite d'eau", "Chauffe-eau"],
     accent: "#2563EB",
-    tint: "#EAF1FF",
-    rating: "4,9 · 87 avis",
-    variant: "classic",
+    image: "/img/realisations/plombier.jpg",
+    domain: "plomberie-martin.fr",
     result: "+42% d'appels",
-    resultDetail: "en 2 mois",
-    description: "Site vitrine bleu épuré + SEO local. Désormais en 1ʳᵉ page Google sur « plombier Lyon ».",
+    resultDetail: "dès les 2 premiers mois",
+    description: "Un site bleu épuré, rapide et 100% mobile. Désormais en 1ʳᵉ page Google sur « plombier Lyon ».",
+    highlights: ["Site responsive sur-mesure", "Référencement local Google", "Formulaire de devis + appel direct"],
   },
   {
     brand: "ClimPro",
     trade: "Climatisation",
     city: "Marseille",
-    tagline: "Installation & entretien clim",
+    tagline: "Votre confort toute l'année",
     phone: "04 91 23 45 67",
-    services: ["Climatisation", "Entretien", "Dépannage"],
-    accent: "#0891B2",
-    tint: "#E3F7FC",
-    rating: "4,8 · 124 avis",
-    variant: "split",
+    accent: "#0E7490",
+    image: "/img/realisations/climatisation.jpg",
+    domain: "climpro-marseille.fr",
     result: "×3 demandes",
-    resultDetail: "de devis cet été",
-    description: "Design cyan avec offre saisonnière + Google Business. Un pic de demandes capté en haute saison.",
+    resultDetail: "de devis pendant l'été",
+    description: "Une refonte moderne et chaleureuse, avec offre saisonnière mise en avant et fiche Google optimisée.",
+    highlights: ["Refonte design complète", "Google Business Profile", "Mise en avant des offres"],
   },
   {
     brand: "Serrurerie Express",
@@ -345,14 +342,13 @@ export const REALISATIONS: Realisation[] = [
     city: "Lille",
     tagline: "Ouverture de porte en 30 min",
     phone: "03 20 34 56 78",
-    services: ["Ouverture", "Blindage", "Serrures"],
     accent: "#EA580C",
-    tint: "#FFF1E8",
-    rating: "5,0 · 56 avis",
-    variant: "urgency",
+    image: "/img/realisations/serrurier.jpg",
+    domain: "serrurerie-express.fr",
     result: "Appels 24/7",
-    resultDetail: "via WhatsApp",
-    description: "Site orange « urgence » avec gros bouton d'appel. Les dépannages tombent jour et nuit.",
+    resultDetail: "via WhatsApp & téléphone",
+    description: "Un site « urgence » orange avec un gros bouton d'appel. Les dépannages tombent jour et nuit.",
+    highlights: ["Site livré en 4 jours", "Bouton d'appel d'urgence", "WhatsApp intégré"],
   },
 ];
 
