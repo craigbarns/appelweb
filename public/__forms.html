@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>Détection des formulaires Netlify — AppelWeb</title>
+  </head>
+  <body>
+    <!--
+      Formulaire caché lu par Netlify au moment du build pour activer la
+      détection (le vrai formulaire de la page est rendu par React et envoie
+      les données en AJAX vers "/"). Les champs doivent rester identiques à
+      ceux du formulaire de components/FinalCTA.tsx.
+    -->
+    <form name="devis" netlify netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="devis" />
+      <input name="bot-field" />
+      <input type="text" name="nom" />
+      <input type="tel" name="telephone" />
+      <select name="metier">
+        <option value="Plombier">Plombier</option>
+        <option value="Électricien">Électricien</option>
+        <option value="Couvreur">Couvreur</option>
+        <option value="Serrurier">Serrurier</option>
+        <option value="Climaticien">Climaticien</option>
+        <option value="Maçon">Maçon</option>
+        <option value="Autre artisan">Autre artisan</option>
+      </select>
+      <input type="text" name="ville" />
+      <textarea name="message"></textarea>
+    </form>
+  </body>
+</html>
