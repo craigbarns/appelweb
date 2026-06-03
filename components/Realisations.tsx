@@ -26,13 +26,7 @@ export default function Realisations() {
           {REALISATIONS.map((r, i) => (
             <Reveal key={r.brand} delay={i * 0.1} className="h-full">
               <div className="card group flex h-full flex-col items-center p-6 text-center transition-all duration-500 hover:-translate-y-1 hover:border-white/20 sm:p-7">
-                <PhoneMockup
-                  brand={r.brand}
-                  trade={r.trade}
-                  city={r.city}
-                  tagline={r.tagline}
-                  phone={r.phone}
-                />
+                <PhoneMockup config={r} />
 
                 <span className="mt-7 inline-flex items-center gap-1.5 rounded-full bg-emerald-500/12 px-3 py-1.5 text-sm font-semibold text-emerald-300 ring-1 ring-inset ring-emerald-500/25">
                   <TrendingUp className="h-4 w-4" />

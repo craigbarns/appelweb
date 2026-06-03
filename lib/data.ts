@@ -298,6 +298,11 @@ export type Realisation = {
   city: string;
   tagline: string;
   phone: string;
+  services: string[];
+  accent: string;
+  tint: string;
+  rating: string;
+  variant: "classic" | "split" | "urgency";
   result: string;
   resultDetail: string;
   description: string;
@@ -310,9 +315,14 @@ export const REALISATIONS: Realisation[] = [
     city: "Lyon",
     tagline: "Dépannage plomberie 24/7",
     phone: "04 78 12 34 56",
+    services: ["Dépannage", "Fuite d'eau", "Chauffe-eau"],
+    accent: "#2563EB",
+    tint: "#EAF1FF",
+    rating: "4,9 · 87 avis",
+    variant: "classic",
     result: "+42% d'appels",
     resultDetail: "en 2 mois",
-    description: "Site vitrine + référencement local. Désormais en 1ʳᵉ page Google sur « plombier Lyon ».",
+    description: "Site vitrine bleu épuré + SEO local. Désormais en 1ʳᵉ page Google sur « plombier Lyon ».",
   },
   {
     brand: "ClimPro",
@@ -320,19 +330,29 @@ export const REALISATIONS: Realisation[] = [
     city: "Marseille",
     tagline: "Installation & entretien clim",
     phone: "04 91 23 45 67",
+    services: ["Climatisation", "Entretien", "Dépannage"],
+    accent: "#0891B2",
+    tint: "#E3F7FC",
+    rating: "4,8 · 124 avis",
+    variant: "split",
     result: "×3 demandes",
     resultDetail: "de devis cet été",
-    description: "Refonte complète + Google Business Profile. Un pic de demandes capté en haute saison.",
+    description: "Design cyan avec offre saisonnière + Google Business. Un pic de demandes capté en haute saison.",
   },
   {
     brand: "Serrurerie Express",
     trade: "Serrurier",
     city: "Lille",
-    tagline: "Dépannage serrurerie express",
+    tagline: "Ouverture de porte en 30 min",
     phone: "03 20 34 56 78",
+    services: ["Ouverture", "Blindage", "Serrures"],
+    accent: "#EA580C",
+    tint: "#FFF1E8",
+    rating: "5,0 · 56 avis",
+    variant: "urgency",
     result: "Appels 24/7",
     resultDetail: "via WhatsApp",
-    description: "Site express + bouton d'appel d'urgence. Les dépannages tombent jour et nuit.",
+    description: "Site orange « urgence » avec gros bouton d'appel. Les dépannages tombent jour et nuit.",
   },
 ];
 
